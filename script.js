@@ -1,6 +1,23 @@
-let tg = window.Telegram.WebApp;
-tg.expand();
+function submitForm(e) {
+  e.preventDefault();
 
-function sendData() {
-  tg.sendData("Hello Telegram");
+  const data = {
+    name: document.getElementById("name").value,
+    number: document.getElementById("number").value,
+    email: document.getElementById("email").value,
+    password: document.getElementById("password").value
+  };
+
+  fetch("PASTE_YOUR_APPS_SCRIPT_URL_HERE", {
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+  .then(res => res.text())
+  .then(() => {
+    alert("Data saved successfully!");
+  })
+  .catch(err => {
+    alert("Error");
+    console.error(err);
+  });
 }
