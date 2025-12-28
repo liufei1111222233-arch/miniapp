@@ -1,90 +1,177 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>নিবন্ধন করুন</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <style>
-        body {
-            background-color: #006400; /* ডার্ক গ্রিন */
-            color: white;
-            font-family: sans-serif;
-            padding: 20px;
-            margin: 0;
-        }
-        h1 { text-align: center; color: #ffd700; } /* ইয়েলো */
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 8px;
-            background-color: rgba(0,0,0,0.5);
-            color: white;
-            font-size: 16px;
-        }
-        button {
-            width: 100%;
-            padding: 15px;
-            background-color: #ffd700;
-            color: black;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .link { text-align: center; margin-top: 20px; color: #ffd700; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up - Your App</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      background: url('https://thumbs.dreamstime.com/b/golden-hour-serenity-lush-green-park-breathtaking-view-lush-green-park-bathed-golden-sunlight-golden-358549942.jpg') 
+                  no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.45); /* টেক্সট পড়ার জন্য অন্ধকার ওভারলে */
+      z-index: 1;
+    }
+    .container {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 1100px;
+      width: 100%;
+      padding: 20px;
+    }
+    .welcome-section {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .welcome-section h1 {
+      font-size: 4.2rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+    }
+    .welcome-section h2 {
+      font-size: 3.2rem;
+      margin-bottom: 20px;
+    }
+    .welcome-section p {
+      font-size: 1.3rem;
+      max-width: 580px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+    .signup-section {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px 50px;
+      width: 100%;
+      max-width: 440px;
+      border: 1px solid rgba(255,255,255,0.2);
+      text-align: center;
+    }
+    .signup-section h3 {
+      font-size: 2.4rem;
+      margin-bottom: 35px;
+    }
+    .form-group {
+      margin-bottom: 25px;
+      text-align: left;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+    input {
+      width: 100%;
+      padding: 14px 16px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      background: rgba(255,255,255,0.25);
+      color: white;
+      outline: none;
+    }
+    input::placeholder {
+      color: rgba(255,255,255,0.7);
+    }
+    button {
+      width: 100%;
+      padding: 16px;
+      background: #ff6b00; /* অরেঞ্জ বাটন */
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 15px;
+    }
+    button:hover {
+      background: #e55f00;
+    }
+    .terms {
+      margin-top: 25px;
+      font-size: 0.95rem;
+      opacity: 0.8;
+    }
+    .terms a {
+      color: #fff;
+      text-decoration: underline;
+    }
+    .already {
+      margin-top: 20px;
+      font-size: 1rem;
+    }
+    .already a {
+      color: #fff;
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-    <h1>নিবন্ধন করুন</h1>
-    
-    <input type="tel" id="mobile" placeholder="+880 মোবাইল নম্বর" required>
-    <input type="password" id="password" placeholder="পাসওয়ার্ড" required>
-    <input type="password" id="confirm" placeholder="পাসওয়ার্ড নিশ্চিত করুন" required>
-    
-    <button id="submitBtn">নিবন্ধন করুন</button>
-    
-    <p class="link">ইতিমধ্যে একাউন্ট আছে? <a href="#" style="color:#ffd700;">লগইন</a></p>
 
-    <script>
-        let tg = window.Telegram.WebApp;
-        tg.ready();
-        tg.expand();  
-        tg.MainButton.setText("নিবন্ধন করুন");
-        tg.MainButton.setParams({color: '#ffd700', text_color: '#000000'});
-        tg.MainButton.show();
-        tg.MainButton.onClick(function() {
-            submitForm();
-        });
+  <div class="container">
+    <div class="welcome-section">
+      <h1>Welcome</h1>
+      <h2>to Our Community</h2>
+      <p>Join us today and start your journey with thousands of others in this beautiful space!</p>
+    </div>
 
-        document.getElementById('submitBtn').addEventListener('click', submitForm);
+    <div class="signup-section">
+      <h3>Sign Up</h3>
+      
+      <form>
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" placeholder="Enter your full name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="Enter your email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Create a strong password" required>
+        </div>
 
-        function submitForm() {
-            let mobile = document.getElementById('mobile').value;
-            let password = document.getElementById('password').value;
-            let confirm = document.getElementById('confirm').value;
+        <div class="form-group">
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+        </div>
 
-            if (password !== confirm) {
-                alert("পাসওয়ার্ড মিলছে না!");
-                return;
-            }
+        <button type="submit">Create Account</button>
+      </form>
 
-            if (!mobile || !password) {
-                alert("সব ফিল্ড পূরণ করুন!");
-                return;
-            }
+      <div class="terms">
+        By signing up, you agree to our <br>
+        <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
+      </div>
 
-            let data = JSON.stringify({
-                mobile: mobile,
-                password: password
-            });
+      <div class="already">
+        Already have an account? <a href="#">Sign In</a>
+      </div>
+    </div>
+  </div>
 
-            tg.sendData(data); 
-          tg.close();
-        }
-    </script>
 </body>
 </html>
