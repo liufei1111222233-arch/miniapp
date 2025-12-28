@@ -7,7 +7,7 @@ function submitForm(e) {
     password: document.getElementById("password").value
   };
 
-  fetch("https://script.google.com/macros/s/AKfycbzoiNjiDwk7V56bKbBeip4Ck3peFUcFUchDi5gju6ZzVKhEbnlnQ4r1fWsGxm5urAOoBg/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbyZHr2PswcVCt97mNkxY17EoPuDrPYmxjhfTWzdySJbDkRsV-VHKz0hbmcCwsYMUk3SQQ/exec", {
     method: "POST",
     body: JSON.stringify(data)
   })
@@ -20,4 +20,5 @@ function submitForm(e) {
     console.error(err);
   });
 }
+
 
