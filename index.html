@@ -1,14 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <title>Telegram Mini App</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>নিবন্ধন করুন</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            background-color: #006400; /* ডার্ক গ্রিন */
+            color: white;
+            font-family: sans-serif;
+            padding: 20px;
+            margin: 0;
+        }
+        h1 { text-align: center; color: #ffd700; } /* ইয়েলো */
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #ffd700;
+            color: black;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .link { text-align: center; margin-top: 20px; color: #ffd700; }
+    </style>
 </head>
 <body>
-  <h2>My First Telegram Mini App</h2>
-  <button onclick="sendData()">Send Data</button>
+    <h1>নিবন্ধন করুন</h1>
+    
+    <input type="tel" id="mobile" placeholder="+880 মোবাইল নম্বর" required>
+    <input type="password" id="password" placeholder="পাসওয়ার্ড" required>
+    <input type="password" id="confirm" placeholder="পাসওয়ার্ড নিশ্চিত করুন" required>
+    
+    <button id="submitBtn">নিবন্ধন করুন</button>
+    
+    <p class="link">ইতিমধ্যে একাউন্ট আছে? <a href="#" style="color:#ffd700;">লগইন</a></p>
 
-  <script src="script.js"></script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();  
+        tg.MainButton.setText("নিবন্ধন করুন");
+        tg.MainButton.setParams({color: '#ffd700', text_color: '#000000'});
+        tg.MainButton.show();
+        tg.MainButton.onClick(function() {
+            submitForm();
+        });
+
+        document.getElementById('submitBtn').addEventListener('click', submitForm);
+
+        function submitForm() {
+            let mobile = document.getElementById('mobile').value;
+            let password = document.getElementById('password').value;
+            let confirm = document.getElementById('confirm').value;
+
+            if (password !== confirm) {
+                alert("পাসওয়ার্ড মিলছে না!");
+                return;
+            }
+
+            if (!mobile || !password) {
+                alert("সব ফিল্ড পূরণ করুন!");
+                return;
+            }
+
+            let data = JSON.stringify({
+                mobile: mobile,
+                password: password
+            });
+
+            tg.sendData(data); 
+          tg.close();
+        }
+    </script>
 </body>
 </html>
