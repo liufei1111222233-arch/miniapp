@@ -3,7 +3,6 @@ function submitForm(e) {
 
   const data = {
     name: document.getElementById("name").value,
-    number: document.getElementById("number").value,
     email: document.getElementById("email").value,
     password: document.getElementById("password").value
   };
